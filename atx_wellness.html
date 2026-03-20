@@ -154,6 +154,16 @@ body { background: var(--coa-faded-white); font-family: 'Geist', Helvetica, sans
 
 .footer { text-align: center; font-size: 11px; color: #9ca3af; margin-top: 32px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.08); line-height: 1.8; font-weight: 300; }
 .footer a { color: var(--coa-green); text-decoration: none; }
+
+.aq-current-chip { display:flex;align-items:center;gap:10px;background:var(--coa-faded-white);border-radius:10px;padding:12px 16px;min-width:160px; }
+.aq-current-chip .aqi-num { font-size:28px;font-weight:600;line-height:1; }
+.aq-current-chip .aqi-info { }
+.aq-current-chip .aqi-cat { font-size:12px;font-weight:500; }
+.aq-current-chip .aqi-poll { font-size:11px;color:#9ca3af; }
+.aq-fc-day { background:var(--coa-faded-white);border-radius:8px;padding:10px 14px;min-width:100px;text-align:center;border-top:3px solid #e5e7eb; }
+.aq-fc-day .fc-d { font-size:10px;color:#9ca3af;margin-bottom:4px; }
+.aq-fc-day .fc-c { font-size:12px;font-weight:600; }
+.aq-fc-day .fc-p { font-size:10px;color:#9ca3af;margin-top:2px; }
 </style>
 </head>
 <body>
@@ -222,7 +232,7 @@ body { background: var(--coa-faded-white); font-family: 'Geist', Helvetica, sans
   <div class="panel" style="display:flex;align-items:center;gap:28px;flex-wrap:wrap;">
     <div style="flex:1;min-width:160px;">
       <div style="font-size:11px;color:#9ca3af;font-weight:400;margin-bottom:6px;">Life expectancy at birth</div>
-      <div style="font-size:48px;font-weight:600;color:var(--coa-dark-blue);line-height:1;" id="leVal">—</div>
+      <div style="font-size:48px;font-weight:600;color:var(--coa-orange);line-height:1;" id="leVal">—</div>
       <div style="font-size:12px;color:#9ca3af;margin-top:4px;">years &nbsp;·&nbsp; CDC USALEEP</div>
     </div>
     <div style="flex:2;min-width:200px;">
@@ -300,26 +310,20 @@ body { background: var(--coa-faded-white); font-family: 'Geist', Helvetica, sans
     </div>
 
     <div class="section-title">Air quality</div>
-<div class="panel" style="display:flex;align-items:center;gap:28px;flex-wrap:wrap;">
-  <div>
-    <div class="panel-title">Current conditions &amp; forecast &mdash; Austin, TX</div>
-    <div style="font-size:12px;color:#9ca3af;margin-bottom:14px;">Live data from TCEQ via AirNow &middot; Updates hourly</div>
-    <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start;">
-      <iframe title="Austin AQI with Forecast" 
-        src="https://widget.airnow.gov/aq-dial-widget-with-forecast/?city=Austin&state=TX&country=USA&transparent=true" 
-        height="340" width="230" style="border:none;border-radius:16px;"></iframe>
-      <div style="max-width:280px;">
-        <div style="font-size:13px;color:var(--coa-dark-blue);font-weight:500;margin-bottom:10px;">About the AQI</div>
-        <div style="font-size:12px;color:#6b7280;line-height:1.7;">
-          The Air Quality Index (AQI) measures how clean or polluted the air is and what health effects may be a concern.<br><br>
-          <span style="display:inline-block;background:#d1fae5;color:#065f46;padding:2px 8px;border-radius:4px;font-weight:500;font-size:11px;">0–50 Good</span>&nbsp;
-          <span style="display:inline-block;background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:4px;font-weight:500;font-size:11px;">51–100 Moderate</span>&nbsp;
-          <span style="display:inline-block;background:#fee2e2;color:#991b1b;padding:2px 8px;border-radius:4px;font-weight:500;font-size:11px;">101–150 Sensitive Groups</span><br><br>
-          Air quality in Austin is monitored by the Texas Commission on Environmental Quality (TCEQ).<br><br>
-          <a href="https://www.airnow.gov" target="_blank" style="color:var(--coa-green);font-weight:500;">Learn more at AirNow.gov &#8594;</a>
-        </div>
-      </div>
+<div class="panel">
+  <div class="panel-title">Current conditions &amp; forecast &mdash; Austin, TX &nbsp;<span style="font-weight:400;color:#9ca3af;">TCEQ via AirNow &middot; updates hourly</span></div>
+  <div id="aqLoading" style="font-size:13px;color:#9ca3af;padding:12px 0;">Loading air quality data...</div>
+  <div id="aqContent" style="display:none;">
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;" id="aqCurrentChips"></div>
+    <div style="font-size:11px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px;">5-day forecast</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;" id="aqForecastDays"></div>
+    <div id="aqActionDay" style="display:none;margin-top:12px;background:#fdecea;border-left:4px solid var(--coa-red);border-radius:0 8px 8px 0;padding:10px 14px;font-size:13px;font-weight:500;color:#c62828;">
+      &#9888; Ozone Action Day in effect — Sensitive groups should limit outdoor activity
     </div>
+  </div>
+  <div style="margin-top:14px;font-size:11px;color:#9ca3af;" id="aqUpdated"></div>
+  <div style="margin-top:8px;">
+    <a href="https://www.airnow.gov" target="_blank" style="font-size:12px;color:var(--coa-green);font-weight:500;">Learn more at AirNow.gov &#8594;</a>
   </div>
 </div>
 
@@ -337,6 +341,229 @@ const LIFE_EXPECTANCY = {"78701": 80.7, "78702": 77.0, "78703": 82.2, "78704": 7
 const COUNTY_AVG_LE = 79.2;
 const MAX_VALS = { diabetes: 20, hypertension: 40, obesity: 45, poverty_rate: 55, uninsured_rate: 35 };
 
+
+function pill(val, avg) {
+  const diff = val - avg;
+  if (Math.abs(diff) < 1.5) return ['s-good', 'Similar'];
+  return diff > 3 ? ['s-bad', 'High'] : diff > 0 ? ['s-warn', 'Elevated'] : ['s-good', 'Below avg'];
+}
+
+function cmpText(val, avg) {
+  const diff = (val - avg).toFixed(1);
+  if (Math.abs(diff) < 1.5) return 'Similar to county avg (' + avg + '%)';
+  const cls = diff > 0 ? 'up' : 'down';
+  const sign = diff > 0 ? '+' : '';
+  return '<b class="' + cls + '">' + sign + diff + '%</b> vs county avg (' + avg + '%)';
+}
+
+function setBar(fillId, avgId, val, max, avgVal) {
+  document.getElementById(fillId).style.width = Math.min((val/max)*100, 100) + '%';
+  document.getElementById(avgId).style.left = Math.min((avgVal/max)*100, 100) + '%';
+}
+
+function selectZip(zip) {
+  document.getElementById('zipInput').value = zip;
+  lookupZip();
+}
+
+function lookupZip() {
+  const zip = document.getElementById('zipInput').value.trim();
+  const err = document.getElementById('errorMsg');
+  const welcome = document.getElementById('welcomeMsg');
+  const results = document.getElementById('results');
+
+  if (!HEALTH_DATA[zip]) {
+    err.style.display = 'block';
+    results.style.display = 'none';
+    welcome.style.display = 'none';
+    return;
+  }
+  err.style.display = 'none';
+  welcome.style.display = 'none';
+  results.style.display = 'block';
+
+  const d = HEALTH_DATA[zip];
+  const diabetes   = parseFloat(d.diabetes);
+  const hyp        = parseFloat(d.hypertension);
+  const obesity    = parseFloat(d.obesity);
+  const poverty    = parseFloat(d.poverty_rate);
+  const uninsured  = parseFloat(d.uninsured_rate);
+
+  document.getElementById('zipHeader').style.display = 'flex';
+  document.getElementById('zipBadge').textContent = zip;
+  document.getElementById('zipName').textContent = d.neighborhood;
+  document.getElementById('zipSub').textContent = 'Travis County, Texas';
+
+  // Life expectancy
+  const age = parseInt(document.getElementById('ageInput').value);
+  const le = LIFE_EXPECTANCY[zip];
+  const leSection = document.getElementById('leSection');
+
+  if (le) {
+    leSection.style.display = 'block';
+    document.getElementById('leVal').textContent = le.toFixed(1);
+    document.getElementById('leAvgLabel').textContent = 'County avg: ' + COUNTY_AVG_LE;
+    const leMin = 65, leMax = 90;
+    const lePct = Math.min(Math.max((le - leMin) / (leMax - leMin) * 100, 0), 100);
+    const avgPct = Math.min(Math.max((COUNTY_AVG_LE - leMin) / (leMax - leMin) * 100, 0), 100);
+    document.getElementById('leBar').style.width = lePct + '%';
+    document.getElementById('leAvgLine').style.left = avgPct + '%';
+    const leDiff = (le - COUNTY_AVG_LE).toFixed(1);
+    const sign = leDiff > 0 ? '+' : '';
+    const col = leDiff >= 0 ? 'var(--coa-green)' : 'var(--coa-red)';
+    document.getElementById('leDiff').innerHTML = 'This ZIP is <strong style="color:' + col + '">' + sign + leDiff + ' years</strong> vs the Travis County average of ' + COUNTY_AVG_LE + ' years';
+    const ageSection = document.getElementById('ageSection');
+    if (!isNaN(age) && age > 0 && age < le) {
+      ageSection.style.display = 'block';
+      document.getElementById('ageDisplay').textContent = age;
+      document.getElementById('yearsLeft').textContent = (le - age).toFixed(1);
+    } else {
+      ageSection.style.display = 'none';
+    }
+  } else {
+    leSection.style.display = 'none';
+  }
+
+  document.getElementById('valDiabetes').textContent    = diabetes.toFixed(1);
+  document.getElementById('valHypertension').textContent = hyp.toFixed(1);
+  document.getElementById('valObesity').textContent     = obesity.toFixed(1);
+
+  const [pc,pt] = pill(diabetes, AVERAGES.diabetes);
+  document.getElementById('pillDiabetes').className = 'status-pill ' + pc;
+  document.getElementById('pillDiabetes').textContent = pt;
+  document.getElementById('cmpDiabetes').innerHTML = cmpText(diabetes, AVERAGES.diabetes);
+
+  const [hc,ht] = pill(hyp, AVERAGES.hypertension);
+  document.getElementById('pillHypertension').className = 'status-pill ' + hc;
+  document.getElementById('pillHypertension').textContent = ht;
+  document.getElementById('cmpHypertension').innerHTML = cmpText(hyp, AVERAGES.hypertension);
+
+  const [oc,ot] = pill(obesity, AVERAGES.obesity);
+  document.getElementById('pillObesity').className = 'status-pill ' + oc;
+  document.getElementById('pillObesity').textContent = ot;
+  document.getElementById('cmpObesity').innerHTML = cmpText(obesity, AVERAGES.obesity);
+
+  document.getElementById('valPoverty').textContent   = poverty.toFixed(1) + '%';
+  document.getElementById('valUninsured').textContent = uninsured.toFixed(1) + '%';
+  setBar('barPoverty',   'avgPoverty',   poverty,   MAX_VALS.poverty_rate,   AVERAGES.poverty_rate);
+  setBar('barUninsured', 'avgUninsured', uninsured, MAX_VALS.uninsured_rate, AVERAGES.uninsured_rate);
+
+  const hv = d.home_value;
+  if (hv) {
+    document.getElementById('homeVal').textContent = '$' + hv.toLocaleString();
+    let tc, tl;
+    if (hv >= 800000)      { tc = 'tier-high'; tl = 'High cost'; }
+    else if (hv >= 450000) { tc = 'tier-med';  tl = 'Medium cost'; }
+    else                   { tc = 'tier-low';  tl = 'Lower cost'; }
+    document.getElementById('homeTier').className = 'hv-tier ' + tc;
+    document.getElementById('homeTier').textContent = tl;
+  } else {
+    document.getElementById('homeVal').textContent = 'N/A';
+    document.getElementById('homeTier').textContent = '';
+  }
+
+  setBar('cmpBarDiab', 'cmpAvgDiab', diabetes,  MAX_VALS.diabetes,       AVERAGES.diabetes);      document.getElementById('cmpValDiab').textContent = diabetes.toFixed(1)  + '%';
+  setBar('cmpBarHyp',  'cmpAvgHyp',  hyp,        MAX_VALS.hypertension,  AVERAGES.hypertension);  document.getElementById('cmpValHyp').textContent  = hyp.toFixed(1)       + '%';
+  setBar('cmpBarOb',   'cmpAvgOb',   obesity,    MAX_VALS.obesity,       AVERAGES.obesity);        document.getElementById('cmpValOb').textContent   = obesity.toFixed(1)   + '%';
+  setBar('cmpBarPov',  'cmpAvgPov',  poverty,    MAX_VALS.poverty_rate,  AVERAGES.poverty_rate);   document.getElementById('cmpValPov').textContent  = poverty.toFixed(1)   + '%';
+  setBar('cmpBarUni',  'cmpAvgUni',  uninsured,  MAX_VALS.uninsured_rate,AVERAGES.uninsured_rate); document.getElementById('cmpValUni').textContent  = uninsured.toFixed(1) + '%';
+}
+
+const PROXIES = [
+  'https://api.allorigins.win/raw?url=',
+  'https://corsproxy.io/?',
+  'https://proxy.cors.sh/'
+];
+
+async function fetchWithProxy(url) {
+  for (const proxy of PROXIES) {
+    try {
+      const res = await fetch(proxy + encodeURIComponent(url));
+      if (res.ok) { const t = await res.text(); if (t && t.includes('<rss')) return t; }
+    } catch(e) { continue; }
+  }
+  return null;
+}
+
+function stripHTML(str) { const d = document.createElement('div'); d.innerHTML = str; return d.textContent || ''; }
+
+function aqColor(cat) {
+  const c = (cat||'').toLowerCase();
+  if (c.includes('good')) return {bg:'#d1fae5',text:'#065f46',border:'#22c55e'};
+  if (c.includes('moderate')) return {bg:'#fef3c7',text:'#92400e',border:'#FFC600'};
+  if (c.includes('sensitive')||c.includes('unhealthy for')) return {bg:'#ffedd5',text:'#9a3412',border:'#FF8F00'};
+  if (c.includes('unhealthy')) return {bg:'#fee2e2',text:'#991b1b',border:'#F83125'};
+  if (c.includes('very unhealthy')) return {bg:'#f3e8ff',text:'#6b21a8',border:'#a855f7'};
+  return {bg:'#f3f4f6',text:'#374151',border:'#9ca3af'};
+}
+
+async function loadAirQuality() {
+  try {
+    // Current conditions
+    const rtTxt = await fetchWithProxy('https://feeds.airnowapi.org/rss/realtime/7.xml');
+    if (rtTxt) {
+      const parser = new DOMParser();
+      const xml = parser.parseFromString(rtTxt, 'text/xml');
+      const desc = xml.querySelector('description').textContent;
+      const clean = stripHTML(desc);
+      const pubDate = xml.querySelector('pubDate').textContent;
+      const lines = clean.split('\n').map(l=>l.trim()).filter(l=>l.includes('AQI'));
+      const chips = lines.map(line => {
+        const parts = line.split('-').map(p=>p.trim());
+        const cat = parts[0]||''; const aqi = (parts[1]||'').replace('AQI','').trim(); const poll = parts[2]||'';
+        const col = aqColor(cat);
+        return `<div class="aq-current-chip" style="border-top:3px solid ${col.border}">
+          <div class="aqi-num" style="color:${col.text}">${aqi}</div>
+          <div class="aqi-info"><div class="aqi-cat" style="color:${col.text}">${cat}</div><div class="aqi-poll">${poll}</div></div>
+        </div>`;
+      }).join('');
+      document.getElementById('aqCurrentChips').innerHTML = chips || '<span style="font-size:13px;color:#9ca3af">No current data</span>';
+      document.getElementById('aqUpdated').textContent = 'Last updated: ' + pubDate.split(' ').slice(1,5).join(' ');
+    }
+
+    // Forecast
+    const fcTxt = await fetchWithProxy('https://feeds.airnowapi.org/rss/forecast/7.xml');
+    if (fcTxt) {
+      const parser = new DOMParser();
+      const xml = parser.parseFromString(fcTxt, 'text/xml');
+      const desc = xml.querySelector('description').textContent;
+      const clean = stripHTML(desc);
+      const lines = clean.split('\n').map(l=>l.trim()).filter(l=>l.includes('/20'));
+      const days = lines.slice(0,5).map(line => {
+        const ci = line.indexOf(':'); const dayLabel = line.substring(0,ci).trim();
+        const rest = line.substring(ci+1).trim(); const di = rest.indexOf('-');
+        const cat = di>-1 ? rest.substring(0,di).trim() : rest.trim();
+        const poll = di>-1 ? rest.substring(di+1).trim() : 'Ozone';
+        const col = aqColor(cat);
+        return `<div class="aq-fc-day" style="border-top-color:${col.border}">
+          <div class="fc-d">${dayLabel}</div>
+          <div class="fc-c" style="color:${col.text}">${cat}</div>
+          <div class="fc-p">${poll}</div>
+        </div>`;
+      }).join('');
+      document.getElementById('aqForecastDays').innerHTML = days;
+    }
+
+    // Action day
+    const adTxt = await fetchWithProxy('https://feeds.airnowapi.org/rss/actionday/7.xml');
+    if (adTxt) {
+      const parser = new DOMParser();
+      const xml = parser.parseFromString(adTxt, 'text/xml');
+      const desc = xml.querySelector('description').textContent;
+      const clean = stripHTML(desc);
+      if (!clean.toLowerCase().includes('no') && clean.toLowerCase().includes('action')) {
+        document.getElementById('aqActionDay').style.display = 'block';
+      }
+    }
+
+    document.getElementById('aqLoading').style.display = 'none';
+    document.getElementById('aqContent').style.display = 'block';
+  } catch(e) {
+    document.getElementById('aqLoading').textContent = 'Air quality data unavailable. Visit airnow.gov for current conditions.';
+  }
+}
+
+loadAirQuality();
 </script>
 </body>
 </html>
