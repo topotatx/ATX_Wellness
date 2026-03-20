@@ -64,54 +64,42 @@ body { background: var(--coa-faded-white); font-family: 'Geist', Helvetica, sans
 .zip-hint { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 10px; position: relative; }
 
 /* AIR QUALITY BANNER */
-.aq-banner {
-  background: var(--coa-dark-blue);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  padding: 10px 32px;
-  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
-}
-.aq-banner-label { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; }
-.aq-chips { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; flex: 1; }
-.aq-chip { display: flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+
+
+
+
 .aq-chip .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.aq-good { background: rgba(0,159,77,0.2); color: #4ade80; }
-.aq-moderate { background: rgba(255,196,0,0.2); color: #fbbf24; }
-.aq-usg { background: rgba(255,143,0,0.2); color: #fb923c; }
-.aq-unhealthy { background: rgba(248,49,37,0.2); color: #f87171; }
-.aq-action { background: rgba(248,49,37,0.3); color: #fca5a5; }
-.aq-updated { font-size: 10px; color: rgba(255,255,255,0.25); margin-left: auto; white-space: nowrap; }
-.aq-loading { font-size: 11px; color: rgba(255,255,255,0.3); }
+
+
+
+
+
+
+
 
 /* ACTION DAY ALERT */
-.action-day-alert {
-  background: var(--coa-red); color: white;
-  padding: 10px 32px; font-size: 13px; font-weight: 600;
-  text-align: center; display: none; letter-spacing: 0.02em;
-}
+
 
 /* FORECAST STRIP */
-.forecast-strip {
-  background: white; border-bottom: 1px solid rgba(0,0,0,0.06);
-  padding: 10px 32px; display: none;
-}
-.forecast-inner { max-width: 960px; margin: 0 auto; }
-.forecast-label { font-size: 10px; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
-.forecast-days { display: flex; gap: 8px; flex-wrap: wrap; }
-.fc-day { background: var(--coa-faded-white); border-radius: 8px; padding: 8px 14px; font-size: 12px; text-align: center; min-width: 90px; }
-.fc-day .fc-date { font-size: 10px; color: #9ca3af; margin-bottom: 3px; font-weight: 400; }
-.fc-day .fc-cat { font-weight: 600; }
-.fc-day .fc-poll { font-size: 10px; color: #9ca3af; margin-top: 2px; }
-.fc-good { border-left: 3px solid var(--coa-green); }
-.fc-moderate { border-left: 3px solid #FFC600; }
-.fc-usg { border-left: 3px solid var(--coa-orange); }
-.fc-unhealthy { border-left: 3px solid var(--coa-red); }
+
+
+
+
+
+.fc-day 
+.fc-day 
+.fc-day 
+
+
+
+
 
 .main { max-width: 960px; margin: 0 auto; padding: 0 24px 48px; }
 .error-msg { background: #fff3cd; border: 1px solid #ffc107; border-radius: 10px; padding: 16px 20px; margin: 24px 0; font-size: 14px; color: #856404; display: none; }
 
 .zip-header {
   display: flex; align-items: center; gap: 16px;
-  margin: -22px 0 24px;
+  margin: 20px 0 24px;
   background: white; border-radius: 12px; padding: 18px 22px;
   box-shadow: 0 4px 20px rgba(34,37,78,0.1);
   border: 0.5px solid rgba(68,73,156,0.15);
@@ -144,7 +132,7 @@ body { background: var(--coa-faded-white); font-family: 'Geist', Helvetica, sans
 .bar-name { font-size: 12px; color: var(--coa-dark-blue); width: 140px; flex-shrink: 0; }
 .bar-track { flex: 1; background: #f3f4f6; border-radius: 4px; height: 7px; position: relative; overflow: visible; }
 .bar-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
-.bar-avg-line { position: absolute; top: -3px; width: 1.5px; height: 13px; background: var(--coa-blue); opacity: 0.5; }
+.bar-avg-line { position: absolute; top: -3px; width: 1.5px; height: 13px; background: #000000; opacity: 0.7; }
 .bar-val { font-size: 12px; font-weight: 600; width: 44px; text-align: right; flex-shrink: 0; }
 
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -181,37 +169,35 @@ body { background: var(--coa-faded-white); font-family: 'Geist', Helvetica, sans
   <div class="header-right">CDC PLACES 2022 · ACS 2023 5-Year<br>Air Quality: TCEQ via AirNow</div>
 </div>
 
-<!-- ACTION DAY ALERT -->
-<div class="action-day-alert" id="actionDayAlert">
-  &#9888; OZONE ACTION DAY IN EFFECT FOR AUSTIN — Sensitive groups should limit outdoor activity
-</div>
 
-<!-- LIVE AIR QUALITY BANNER -->
-<div class="aq-banner">
-  <div class="aq-banner-label">Live Air Quality</div>
-  <div class="aq-chips" id="aqChips"><span class="aq-loading">Loading current conditions...</span></div>
-  <div class="aq-updated" id="aqUpdated"></div>
-</div>
 
 <div class="hero">
   <h1>Check Your Neighborhood</h1>
   <p>Enter a ZIP code to explore health indicators for your community in Travis County</p>
-  <div class="search-wrap">
+  <div class="search-wrap" style="max-width:520px;">
     <input type="text" id="zipInput" maxlength="5" placeholder="78701"
       oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+      onkeydown="if(event.key==='Enter')lookupZip()"
+      style="border-radius:10px 0 0 10px;flex:1.2;">
+    <input type="number" id="ageInput" min="1" max="99" placeholder="Age (optional)"
+      style="flex:1;padding:14px 16px;font-size:15px;font-family:Geist,sans-serif;border:none;border-left:1px solid #e5e7eb;outline:none;color:#22254E;width:100%;"
       onkeydown="if(event.key==='Enter')lookupZip()">
     <button class="search-btn" onclick="lookupZip()">Explore &#8594;</button>
   </div>
-  <div class="zip-hint">Try: 78744 &middot; 78753 &middot; 78702 &middot; 78746 &middot; 78719</div>
-</div>
-
-<!-- 5-DAY FORECAST STRIP -->
-<div class="forecast-strip" id="forecastStrip">
-  <div class="forecast-inner">
-    <div class="forecast-label">5-Day Air Quality Forecast &mdash; Austin, TX (TCEQ / AirNow)</div>
-    <div class="forecast-days" id="forecastDays"></div>
+  <div style="margin-top:16px;position:relative;z-index:1;">
+  <div style="font-size:11px;color:rgba(255,255,255,0.35);margin-bottom:8px;letter-spacing:0.05em;">Try a neighborhood:</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
+    <button onclick="selectZip('78701')" style="background:transparent;border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.7);padding:5px 14px;border-radius:20px;font-size:12px;cursor:pointer;font-family:Geist,sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Downtown 78701</button>
+    <button onclick="selectZip('78702')" style="background:transparent;border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.7);padding:5px 14px;border-radius:20px;font-size:12px;cursor:pointer;font-family:Geist,sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">East Austin 78702</button>
+    <button onclick="selectZip('78704')" style="background:transparent;border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.7);padding:5px 14px;border-radius:20px;font-size:12px;cursor:pointer;font-family:Geist,sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">South Congress 78704</button>
+    <button onclick="selectZip('78746')" style="background:transparent;border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.7);padding:5px 14px;border-radius:20px;font-size:12px;cursor:pointer;font-family:Geist,sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Westlake 78746</button>
+    <button onclick="selectZip('78744')" style="background:transparent;border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.7);padding:5px 14px;border-radius:20px;font-size:12px;cursor:pointer;font-family:Geist,sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Onion Creek 78744</button>
+    <button onclick="selectZip('78753')" style="background:transparent;border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.7);padding:5px 14px;border-radius:20px;font-size:12px;cursor:pointer;font-family:Geist,sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">North Austin 78753</button>
   </div>
 </div>
+</div>
+
+
 
 <div class="main">
   <div class="error-msg" id="errorMsg">That ZIP code is not in our Travis County dataset. Please try one of the Austin ZIPs shown below the search bar.</div>
@@ -231,7 +217,33 @@ body { background: var(--coa-faded-white); font-family: 'Geist', Helvetica, sans
       <div class="data-note">CDC PLACES 2022 &middot; ACS 5-Year 2023<br>County averages shown for comparison</div>
     </div>
 
-    <div class="section-title">Health indicators</div>
+    <div id="leSection" style="display:none;margin-bottom:16px;">
+  <div class="section-title">Life expectancy</div>
+  <div class="panel" style="display:flex;align-items:center;gap:28px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:160px;">
+      <div style="font-size:11px;color:#9ca3af;font-weight:400;margin-bottom:6px;">Life expectancy at birth</div>
+      <div style="font-size:48px;font-weight:600;color:var(--coa-dark-blue);line-height:1;" id="leVal">—</div>
+      <div style="font-size:12px;color:#9ca3af;margin-top:4px;">years &nbsp;·&nbsp; CDC USALEEP</div>
+    </div>
+    <div style="flex:2;min-width:200px;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:#9ca3af;margin-bottom:6px;">
+        <span>65 yrs</span><span id="leAvgLabel">County avg</span><span>90 yrs</span>
+      </div>
+      <div style="background:#f3f4f6;border-radius:6px;height:12px;position:relative;overflow:visible;">
+        <div id="leBar" style="height:100%;border-radius:6px;background:var(--coa-blue);transition:width 0.6s ease;"></div>
+        <div id="leAvgLine" style="position:absolute;top:-4px;width:2px;height:20px;background:#000;opacity:0.6;"></div>
+      </div>
+      <div style="font-size:12px;color:#9ca3af;margin-top:10px;" id="leDiff"></div>
+    </div>
+    <div id="ageSection" style="display:none;background:var(--coa-light-blue);border-radius:10px;padding:16px 20px;min-width:160px;text-align:center;">
+      <div style="font-size:11px;color:#185FA5;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;">At age <span id="ageDisplay"></span></div>
+      <div style="font-size:32px;font-weight:600;color:var(--coa-dark-blue);" id="yearsLeft"></div>
+      <div style="font-size:11px;color:#185FA5;margin-top:4px;">estimated years ahead</div>
+    </div>
+  </div>
+</div>
+
+<div class="section-title">Health indicators</div>
     <div class="ind-grid">
       <div class="ind-card">
         <div class="ind-top"><div class="ind-label">Diabetes prevalence</div><div class="status-pill" id="pillDiabetes"></div></div>
@@ -287,7 +299,31 @@ body { background: var(--coa-faded-white); font-family: 'Geist', Helvetica, sans
       </div>
     </div>
 
-    <div class="footer">
+    <div class="section-title">Air quality</div>
+<div class="panel" style="display:flex;align-items:center;gap:28px;flex-wrap:wrap;">
+  <div>
+    <div class="panel-title">Current conditions &amp; forecast &mdash; Austin, TX</div>
+    <div style="font-size:12px;color:#9ca3af;margin-bottom:14px;">Live data from TCEQ via AirNow &middot; Updates hourly</div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start;">
+      <iframe title="Austin AQI with Forecast" 
+        src="https://widget.airnow.gov/aq-dial-widget-with-forecast/?city=Austin&state=TX&country=USA&transparent=true" 
+        height="340" width="230" style="border:none;border-radius:16px;"></iframe>
+      <div style="max-width:280px;">
+        <div style="font-size:13px;color:var(--coa-dark-blue);font-weight:500;margin-bottom:10px;">About the AQI</div>
+        <div style="font-size:12px;color:#6b7280;line-height:1.7;">
+          The Air Quality Index (AQI) measures how clean or polluted the air is and what health effects may be a concern.<br><br>
+          <span style="display:inline-block;background:#d1fae5;color:#065f46;padding:2px 8px;border-radius:4px;font-weight:500;font-size:11px;">0–50 Good</span>&nbsp;
+          <span style="display:inline-block;background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:4px;font-weight:500;font-size:11px;">51–100 Moderate</span>&nbsp;
+          <span style="display:inline-block;background:#fee2e2;color:#991b1b;padding:2px 8px;border-radius:4px;font-weight:500;font-size:11px;">101–150 Sensitive Groups</span><br><br>
+          Air quality in Austin is monitored by the Texas Commission on Environmental Quality (TCEQ).<br><br>
+          <a href="https://www.airnow.gov" target="_blank" style="color:var(--coa-green);font-weight:500;">Learn more at AirNow.gov &#8594;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
       Sources: CDC PLACES 2022 &middot; U.S. Census ACS 5-Year 2023 &middot; Zillow ZHVI 2026 &middot; AirNow / TCEQ (live)<br>
       Austin Public Health &middot; <a href="https://data.austintexas.gov">data.austintexas.gov</a> &middot; Health services: <a href="https://austintexas.gov/health">austintexas.gov/health</a> &middot; Call 311
     </div>
@@ -297,233 +333,10 @@ body { background: var(--coa-faded-white); font-family: 'Geist', Helvetica, sans
 <script>
 const HEALTH_DATA = {"78701": {"poverty_rate": "13.3", "uninsured_rate": "5.4", "hypertension": "23.0", "diabetes": "8.5", "obesity": "27.0", "neighborhood": "Downtown Austin", "home_value": 813151}, "78702": {"poverty_rate": "17.9", "uninsured_rate": "10.1", "hypertension": "22.9", "diabetes": "9.1", "obesity": "30.1", "neighborhood": "East Austin", "home_value": 645490}, "78703": {"poverty_rate": "5.9", "uninsured_rate": "5.5", "hypertension": "23.2", "diabetes": "7.8", "obesity": "25.0", "neighborhood": "Tarrytown / Clarksville", "home_value": 1490565}, "78704": {"poverty_rate": "11.4", "uninsured_rate": "11.0", "hypertension": "20.0", "diabetes": "7.0", "obesity": "27.3", "neighborhood": "South Congress / Bouldin", "home_value": 893869}, "78705": {"poverty_rate": "47.9", "uninsured_rate": "11.0", "hypertension": "14.1", "diabetes": "4.4", "obesity": "25.5", "neighborhood": "UT Campus / Hyde Park S", "home_value": 448308}, "78717": {"poverty_rate": "4.3", "uninsured_rate": "5.3", "hypertension": "25.6", "diabetes": "8.5", "obesity": "25.9", "neighborhood": "Cedar Park / NW Travis", "home_value": 608383}, "78719": {"poverty_rate": "9.8", "uninsured_rate": "27.6", "hypertension": "27.4", "diabetes": "15.3", "obesity": "34.3", "neighborhood": "Del Valle / SE Austin", "home_value": 475809}, "78721": {"poverty_rate": "18.6", "uninsured_rate": "15.7", "hypertension": "28.7", "diabetes": "12.0", "obesity": "34.0", "neighborhood": "MLK / East Austin S", "home_value": 474273}, "78722": {"poverty_rate": "10.7", "uninsured_rate": "7.9", "hypertension": "23.0", "diabetes": "8.3", "obesity": "28.9", "neighborhood": "Cherrywood", "home_value": 635457}, "78723": {"poverty_rate": "12.7", "uninsured_rate": "14.5", "hypertension": "26.5", "diabetes": "11.0", "obesity": "31.7", "neighborhood": "Mueller / Windsor Park", "home_value": 547180}, "78724": {"poverty_rate": "13.1", "uninsured_rate": "19.7", "hypertension": "27.1", "diabetes": "13.3", "obesity": "36.4", "neighborhood": "Dove Springs / Montopolis", "home_value": 343189}, "78725": {"poverty_rate": "7.5", "uninsured_rate": "16.2", "hypertension": "25.8", "diabetes": "10.6", "obesity": "32.6", "neighborhood": "Colony Park / Webberville", "home_value": 301296}, "78726": {"poverty_rate": "13.8", "uninsured_rate": "3.7", "hypertension": "21.9", "diabetes": "8.4", "obesity": "25.5", "neighborhood": "NW Austin / Four Points", "home_value": 738805}, "78727": {"poverty_rate": "5.2", "uninsured_rate": "9.2", "hypertension": "22.5", "diabetes": "8.7", "obesity": "25.5", "neighborhood": "Scofield Farms / Domain", "home_value": 507505}, "78728": {"poverty_rate": "13.8", "uninsured_rate": "14.2", "hypertension": "24.4", "diabetes": "9.7", "obesity": "30.8", "neighborhood": "Braker / North Austin", "home_value": 428510}, "78729": {"poverty_rate": "6.3", "uninsured_rate": "9.7", "hypertension": "25.7", "diabetes": "8.2", "obesity": "28.9", "neighborhood": "Jollyville / Tech Ridge", "home_value": 465849}, "78730": {"poverty_rate": "4.1", "uninsured_rate": "1.2", "hypertension": "24.9", "diabetes": "8.9", "obesity": "25.0", "neighborhood": "River Place / NW Austin", "home_value": 1180679}, "78731": {"poverty_rate": "7.1", "uninsured_rate": "7.7", "hypertension": "26.3", "diabetes": "9.0", "obesity": "24.7", "neighborhood": "Northwest Hills / Bull Creek", "home_value": 1135682}, "78732": {"poverty_rate": "3.1", "uninsured_rate": "4.7", "hypertension": "25.0", "diabetes": "9.2", "obesity": "25.5", "neighborhood": "Steiner Ranch", "home_value": 887711}, "78733": {"poverty_rate": "1.7", "uninsured_rate": "4.5", "hypertension": "26.4", "diabetes": "9.8", "obesity": "24.8", "neighborhood": "Barton Creek / SW Hills", "home_value": 1192956}, "78735": {"poverty_rate": "7.3", "uninsured_rate": "7.1", "hypertension": "25.0", "diabetes": "9.1", "obesity": "26.8", "neighborhood": "Oak Hill / Barton Creek", "home_value": 873718}, "78736": {"poverty_rate": "7.2", "uninsured_rate": "8.4", "hypertension": "27.1", "diabetes": "9.9", "obesity": "27.5", "neighborhood": "Oak Hill / Convict Hill", "home_value": 638110}, "78737": {"poverty_rate": "4.8", "uninsured_rate": "4.8", "hypertension": "31.2", "diabetes": "10.3", "obesity": "28.9", "neighborhood": "Driftwood / SW Austin", "home_value": 567383}, "78738": {"poverty_rate": "4.4", "uninsured_rate": "3.9", "hypertension": "27.1", "diabetes": "9.4", "obesity": "25.2", "neighborhood": "Bee Cave / SW Travis", "home_value": 904176}, "78739": {"poverty_rate": "2.8", "uninsured_rate": "2.1", "hypertension": "24.8", "diabetes": "9.1", "obesity": "25.3", "neighborhood": "Circle C Ranch", "home_value": 826482}, "78741": {"poverty_rate": "25.0", "uninsured_rate": "21.5", "hypertension": "21.3", "diabetes": "8.9", "obesity": "31.9", "neighborhood": "Riverside / East Oltorf", "home_value": 456935}, "78742": {"poverty_rate": "16.8", "uninsured_rate": "23.2", "hypertension": "33.8", "diabetes": "16.7", "obesity": "38.6", "neighborhood": "Colorado River / Industrial", "home_value": 360870}, "78744": {"poverty_rate": "12.7", "uninsured_rate": "20.4", "hypertension": "23.7", "diabetes": "11.4", "obesity": "33.2", "neighborhood": "Onion Creek / Slaughter", "home_value": 347514}, "78745": {"poverty_rate": "10.3", "uninsured_rate": "14.7", "hypertension": "24.7", "diabetes": "9.8", "obesity": "29.6", "neighborhood": "South Austin / Slaughter", "home_value": 499966}, "78746": {"poverty_rate": "4.1", "uninsured_rate": "3.4", "hypertension": "26.7", "diabetes": "9.4", "obesity": "24.5", "neighborhood": "Westlake / West Lake Hills", "home_value": 1872899}, "78747": {"poverty_rate": "12.4", "uninsured_rate": "17.9", "hypertension": "23.2", "diabetes": "10.1", "obesity": "30.0", "neighborhood": "SE Austin / Pilot Knob", "home_value": 388410}, "78748": {"poverty_rate": "8.9", "uninsured_rate": "9.8", "hypertension": "23.7", "diabetes": "9.4", "obesity": "29.1", "neighborhood": "South Austin / Manchaca", "home_value": 434549}, "78749": {"poverty_rate": "5.1", "uninsured_rate": "6.1", "hypertension": "24.3", "diabetes": "9.1", "obesity": "26.5", "neighborhood": "Circle C / Southwest", "home_value": 610260}, "78750": {"poverty_rate": "4.1", "uninsured_rate": "8.0", "hypertension": "28.1", "diabetes": "9.8", "obesity": "26.4", "neighborhood": "Anderson Mill / NW", "home_value": 647578}, "78751": {"poverty_rate": "11.8", "uninsured_rate": "8.5", "hypertension": "18.0", "diabetes": "5.9", "obesity": "25.6", "neighborhood": "Hyde Park / North Loop", "home_value": 684514}, "78752": {"poverty_rate": "19.6", "uninsured_rate": "17.9", "hypertension": "25.7", "diabetes": "11.3", "obesity": "33.6", "neighborhood": "North Loop / St Johns", "home_value": 452541}, "78753": {"poverty_rate": "18.1", "uninsured_rate": "24.7", "hypertension": "26.4", "diabetes": "12.4", "obesity": "33.0", "neighborhood": "Pflugerville / NE Austin", "home_value": 387109}, "78754": {"poverty_rate": "17.1", "uninsured_rate": "15.5", "hypertension": "24.0", "diabetes": "10.6", "obesity": "29.9", "neighborhood": "Dessau / NE Austin", "home_value": 357305}, "78756": {"poverty_rate": "13.6", "uninsured_rate": "6.7", "hypertension": "23.4", "diabetes": "8.6", "obesity": "28.7", "neighborhood": "Brentwood / Hyde Park N", "home_value": 808148}, "78757": {"poverty_rate": "5.7", "uninsured_rate": "5.8", "hypertension": "24.4", "diabetes": "9.0", "obesity": "28.4", "neighborhood": "Crestview / Allandale", "home_value": 673436}, "78758": {"poverty_rate": "22.2", "uninsured_rate": "21.1", "hypertension": "23.9", "diabetes": "10.6", "obesity": "31.5", "neighborhood": "North Austin / Rundberg", "home_value": 428338}, "78759": {"poverty_rate": "4.1", "uninsured_rate": "7.0", "hypertension": "24.8", "diabetes": "8.8", "obesity": "24.9", "neighborhood": "Great Hills / Arboretum", "home_value": 715623}};
 const AVERAGES = {"poverty_rate": 11.1, "uninsured_rate": 11.0, "diabetes": 9.7, "hypertension": 24.8, "obesity": 28.8};
+const LIFE_EXPECTANCY = {"78701": 80.7, "78702": 77.0, "78703": 82.2, "78704": 79.3, "78705": 81.6, "78717": 80.6, "78719": 84.2, "78721": 75.2, "78722": 80.2, "78723": 77.8, "78724": 73.8, "78725": 75.0, "78727": 79.9, "78729": 79.5, "78731": 83.5, "78733": 83.3, "78735": 78.0, "78736": 78.1, "78737": 78.1, "78738": 78.1, "78741": 76.1, "78742": 76.4, "78744": 78.6, "78745": 76.7, "78746": 82.9, "78747": 79.3, "78748": 77.9, "78750": 79.5, "78751": 80.0, "78752": 77.8, "78756": 81.3, "78757": 80.9, "78759": 78.5};
+const COUNTY_AVG_LE = 79.2;
 const MAX_VALS = { diabetes: 20, hypertension: 40, obesity: 45, poverty_rate: 55, uninsured_rate: 35 };
-const PROXIES = [
-  'https://api.allorigins.win/raw?url=',
-  'https://corsproxy.io/?',
-  'https://proxy.cors.sh/'
-];
 
-async function fetchWithProxy(url) {
-  for (const proxy of PROXIES) {
-    try {
-      const res = await fetch(proxy + encodeURIComponent(url));
-      if (res.ok) {
-        
-        if (txt && txt.includes('<rss')) return txt;
-      }
-    } catch(e) { continue; }
-  }
-  return null;
-}
-const REALTIME_URL  = 'https://feeds.airnowapi.org/rss/realtime/7.xml';
-const FORECAST_URL  = 'https://feeds.airnowapi.org/rss/forecast/7.xml';
-const ACTIONDAY_URL = 'https://feeds.airnowapi.org/rss/actionday/7.xml';
-
-function aqClass(cat) {
-  const c = (cat || '').toLowerCase();
-  if (c.includes('good'))      return 'aq-good';
-  if (c.includes('moderate'))  return 'aq-moderate';
-  if (c.includes('unhealthy for sensitive')) return 'aq-usg';
-  if (c.includes('unhealthy')) return 'aq-unhealthy';
-  return 'aq-moderate';
-}
-function aqDotColor(cat) {
-  const c = (cat || '').toLowerCase();
-  if (c.includes('good'))      return '#22c55e';
-  if (c.includes('moderate'))  return '#FFC600';
-  if (c.includes('unhealthy for sensitive')) return '#FF8F00';
-  if (c.includes('unhealthy')) return '#F83125';
-  return '#FFC600';
-}
-function fcClass(cat) {
-  const c = (cat || '').toLowerCase();
-  if (c.includes('good'))     return 'fc-good';
-  if (c.includes('moderate')) return 'fc-moderate';
-  if (c.includes('sensitive'))return 'fc-usg';
-  return 'fc-unhealthy';
-}
-
-function parseRSS(xmlText) {
-  const parser = new DOMParser();
-  return parser.parseFromString(xmlText, 'text/xml');
-}
-
-function stripHTML(str) {
-  const d = document.createElement('div');
-  d.innerHTML = str;
-  return d.textContent || d.innerText || '';
-}
-
-async function fetchAirQuality() {
-  try {
-    const txt = await fetchWithProxy(REALTIME_URL); if (!txt) throw new Error('All proxies failed');
-    
-    const xml = parseRSS(txt);
-    const desc = xml.querySelector('description').textContent;
-    const clean = stripHTML(desc);
-    const pubDate = xml.querySelector('pubDate').textContent;
-
-    // Parse lines like "Moderate  - 58 AQI - Ozone"
-    const lines = clean.split('\n').map(l => l.trim()).filter(l => l.includes('AQI'));
-    const chips = lines.map(line => {
-      const parts = line.split('-').map(p => p.trim());
-      const cat = parts[0] || '';
-      const aqi = parts[1] || '';
-      const poll = parts[2] || '';
-      return `<div class="aq-chip ${aqClass(cat)}">
-        <div class="dot" style="background:${aqDotColor(cat)}"></div>
-        <span>${poll}: <strong>${cat}</strong> ${aqi}</span>
-      </div>`;
-    }).join('');
-
-    document.getElementById('aqChips').innerHTML = chips || '<span class="aq-loading">No current data</span>';
-    document.getElementById('aqUpdated').textContent = 'Updated: ' + pubDate.split(' ').slice(1,5).join(' ');
-  } catch(e) {
-    document.getElementById('aqChips').innerHTML = '<span class="aq-loading">Air quality data unavailable</span>';
-  }
-}
-
-async function fetchActionDay() {
-  try {
-    const txt = await fetchWithProxy(ACTIONDAY_URL); if (!txt) throw new Error('All proxies failed');
-    
-    const xml = parseRSS(txt);
-    const desc = xml.querySelector('description').textContent;
-    const clean = stripHTML(desc);
-    if (!clean.toLowerCase().includes('no') && clean.toLowerCase().includes('action day')) {
-      document.getElementById('actionDayAlert').style.display = 'block';
-    }
-  } catch(e) {}
-}
-
-async function fetchForecast() {
-  try {
-    const txt = await fetchWithProxy(FORECAST_URL); if (!txt) throw new Error('All proxies failed');
-    
-    const xml = parseRSS(txt);
-    const desc = xml.querySelector('description').textContent;
-    const clean = stripHTML(desc);
-
-    // Parse lines like "Today, 03/20/2026: Moderate  - Ozone"
-    const lines = clean.split('\n').map(l => l.trim()).filter(l => l.includes(':') && (l.includes('/202') || l.toLowerCase().includes('today') || l.toLowerCase().includes('tomorrow')));
-    const days = lines.slice(0, 5).map(line => {
-      const colonIdx = line.indexOf(':');
-      const dayLabel = line.substring(0, colonIdx).trim();
-      const rest = line.substring(colonIdx + 1).trim();
-      const dashIdx = rest.indexOf('-');
-      const cat = dashIdx > -1 ? rest.substring(0, dashIdx).trim() : rest.trim();
-      const poll = dashIdx > -1 ? rest.substring(dashIdx + 1).trim() : 'Ozone';
-      return `<div class="fc-day ${fcClass(cat)}">
-        <div class="fc-date">${dayLabel}</div>
-        <div class="fc-cat" style="color:${aqDotColor(cat)}">${cat}</div>
-        <div class="fc-poll">${poll}</div>
-      </div>`;
-    }).join('');
-
-    if (days) {
-      document.getElementById('forecastDays').innerHTML = days;
-      document.getElementById('forecastStrip').style.display = 'block';
-    }
-  } catch(e) {}
-}
-
-function pill(val, avg) {
-  const diff = val - avg;
-  if (Math.abs(diff) < 1.5) return ['s-good', 'Similar'];
-  return diff > 3 ? ['s-bad', 'High'] : diff > 0 ? ['s-warn', 'Elevated'] : ['s-good', 'Below avg'];
-}
-
-function cmpText(val, avg) {
-  const diff = (val - avg).toFixed(1);
-  if (Math.abs(diff) < 1.5) return 'Similar to county avg (' + avg + '%)';
-  const cls = diff > 0 ? 'up' : 'down';
-  const sign = diff > 0 ? '+' : '';
-  return '<b class="' + cls + '">' + sign + diff + '%</b> vs county avg (' + avg + '%)';
-}
-
-function setBar(fillId, avgId, val, max, avgVal) {
-  document.getElementById(fillId).style.width = Math.min((val/max)*100, 100) + '%';
-  document.getElementById(avgId).style.left = Math.min((avgVal/max)*100, 100) + '%';
-}
-
-function lookupZip() {
-  const zip = document.getElementById('zipInput').value.trim();
-  const err = document.getElementById('errorMsg');
-  const welcome = document.getElementById('welcomeMsg');
-  const results = document.getElementById('results');
-
-  if (!HEALTH_DATA[zip]) {
-    err.style.display = 'block';
-    results.style.display = 'none';
-    welcome.style.display = 'none';
-    return;
-  }
-  err.style.display = 'none';
-  welcome.style.display = 'none';
-  results.style.display = 'block';
-
-  const d = HEALTH_DATA[zip];
-  const diabetes   = parseFloat(d.diabetes);
-  const hyp        = parseFloat(d.hypertension);
-  const obesity    = parseFloat(d.obesity);
-  const poverty    = parseFloat(d.poverty_rate);
-  const uninsured  = parseFloat(d.uninsured_rate);
-
-  document.getElementById('zipHeader').style.display = 'flex';
-  document.getElementById('zipBadge').textContent = zip;
-  document.getElementById('zipName').textContent = d.neighborhood;
-  document.getElementById('zipSub').textContent = 'Travis County, Texas';
-
-  document.getElementById('valDiabetes').textContent    = diabetes.toFixed(1);
-  document.getElementById('valHypertension').textContent = hyp.toFixed(1);
-  document.getElementById('valObesity').textContent     = obesity.toFixed(1);
-
-  const [pc,pt] = pill(diabetes, AVERAGES.diabetes);
-  document.getElementById('pillDiabetes').className = 'status-pill ' + pc;
-  document.getElementById('pillDiabetes').textContent = pt;
-  document.getElementById('cmpDiabetes').innerHTML = cmpText(diabetes, AVERAGES.diabetes);
-
-  const [hc,ht] = pill(hyp, AVERAGES.hypertension);
-  document.getElementById('pillHypertension').className = 'status-pill ' + hc;
-  document.getElementById('pillHypertension').textContent = ht;
-  document.getElementById('cmpHypertension').innerHTML = cmpText(hyp, AVERAGES.hypertension);
-
-  const [oc,ot] = pill(obesity, AVERAGES.obesity);
-  document.getElementById('pillObesity').className = 'status-pill ' + oc;
-  document.getElementById('pillObesity').textContent = ot;
-  document.getElementById('cmpObesity').innerHTML = cmpText(obesity, AVERAGES.obesity);
-
-  document.getElementById('valPoverty').textContent   = poverty.toFixed(1) + '%';
-  document.getElementById('valUninsured').textContent = uninsured.toFixed(1) + '%';
-  setBar('barPoverty',   'avgPoverty',   poverty,   MAX_VALS.poverty_rate,   AVERAGES.poverty_rate);
-  setBar('barUninsured', 'avgUninsured', uninsured, MAX_VALS.uninsured_rate, AVERAGES.uninsured_rate);
-
-  const hv = d.home_value;
-  if (hv) {
-    document.getElementById('homeVal').textContent = '$' + hv.toLocaleString();
-    let tc, tl;
-    if (hv >= 800000)      { tc = 'tier-high'; tl = 'High cost'; }
-    else if (hv >= 450000) { tc = 'tier-med';  tl = 'Medium cost'; }
-    else                   { tc = 'tier-low';  tl = 'Lower cost'; }
-    document.getElementById('homeTier').className = 'hv-tier ' + tc;
-    document.getElementById('homeTier').textContent = tl;
-  } else {
-    document.getElementById('homeVal').textContent = 'N/A';
-    document.getElementById('homeTier').textContent = '';
-  }
-
-  setBar('cmpBarDiab', 'cmpAvgDiab', diabetes,  MAX_VALS.diabetes,      AVERAGES.diabetes);      document.getElementById('cmpValDiab').textContent = diabetes.toFixed(1)  + '%';
-  setBar('cmpBarHyp',  'cmpAvgHyp',  hyp,        MAX_VALS.hypertension,  AVERAGES.hypertension);  document.getElementById('cmpValHyp').textContent  = hyp.toFixed(1)       + '%';
-  setBar('cmpBarOb',   'cmpAvgOb',   obesity,    MAX_VALS.obesity,       AVERAGES.obesity);        document.getElementById('cmpValOb').textContent   = obesity.toFixed(1)   + '%';
-  setBar('cmpBarPov',  'cmpAvgPov',  poverty,    MAX_VALS.poverty_rate,  AVERAGES.poverty_rate);   document.getElementById('cmpValPov').textContent  = poverty.toFixed(1)   + '%';
-  setBar('cmpBarUni',  'cmpAvgUni',  uninsured,  MAX_VALS.uninsured_rate,AVERAGES.uninsured_rate); document.getElementById('cmpValUni').textContent  = uninsured.toFixed(1) + '%';
-}
-
-// Load air quality on page load
-fetchActionDay();
-fetchAirQuality();
-fetchForecast();
 </script>
 </body>
 </html>
